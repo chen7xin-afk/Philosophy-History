@@ -67,6 +67,12 @@ const PAL = {
   blueFaint: 'rgba(92,118,168,0.10)',
 };
 
+const FONT_SERIF_ZH = 'ui-serif, "Songti SC", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", SimSun, Georgia, serif';
+const FONT_SERIF_EN = 'Georgia, "Times New Roman", "Songti SC", "STSong", serif';
+const FONT_MONO = 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace';
+const ENABLE_REMOTE_PORTRAITS = new URLSearchParams(window.location.search).get('portraits') !== '0';
+const REMOTE_PORTRAIT_TIMEOUT_MS = 1600;
+
 const CANON_PHILOSOPHER_IDS = new Set([
   'socrates', 'plato', 'aristotle', 'augustine', 'aquinas', 'machiavelli',
   'descartes', 'locke', 'hume', 'kant', 'hegel', 'marx',
@@ -246,25 +252,31 @@ const PERSONALITY_TYPES = {
 // Fetches a thumbnail from Wikipedia (REST summary API). Falls back to an
 // engraved silhouette while loading or if the article has no image.
 const WIKI_OVERRIDES = (window.PHI_DATA && window.PHI_DATA.WIKI_TITLES) || {};
-const PORTRAIT_OVERRIDES = {
+const PORTRAIT_OVERRIDES = ENABLE_REMOTE_PORTRAITS ? {
   descartes: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg/256px-Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg',
-};
+} : {};
 const _wikiCache = new Map();
 function wikiTitleFor(id, en) {
   if (WIKI_OVERRIDES[id]) return WIKI_OVERRIDES[id];
   return (en || id).replace(/^c\.\s*/, '').replace(/\s/g, '_');
 }
 async function fetchWikiThumb(title) {
+  if (!ENABLE_REMOTE_PORTRAITS) return null;
   if (_wikiCache.has(title)) return _wikiCache.get(title);
   const promise = (async () => {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), REMOTE_PORTRAIT_TIMEOUT_MS);
     try {
       let normalizedTitle = title;
       try { normalizedTitle = decodeURIComponent(title); } catch {}
-      const r = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(normalizedTitle)}`);
+      const r = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(normalizedTitle)}`, {
+        signal: controller.signal,
+      });
       if (!r.ok) return null;
       const j = await r.json();
       return j.thumbnail?.source || j.originalimage?.source || null;
     } catch { return null; }
+    finally { clearTimeout(timer); }
   })();
   _wikiCache.set(title, promise);
   return promise;
@@ -534,7 +546,7 @@ function PhilosophyTimeline({ fixedHeight = null }) {
       background: PAL.bg, color: PAL.ink,
       height: fixedHeight || '100vh', width: '100%',
       display: 'flex', flexDirection: 'column',
-      fontFamily: lang === 'zh' ? '"Noto Serif SC", "EB Garamond", Georgia, serif' : '"EB Garamond", "Noto Serif SC", Georgia, serif',
+      fontFamily: lang === 'zh' ? FONT_SERIF_ZH : FONT_SERIF_EN,
       position: 'relative', overflow: 'hidden',
     }}>
       <Header lang={lang} setLang={setLang} isMobile={isMobile} onOpenTest={openPersonalityTest}/>
@@ -643,13 +655,13 @@ function PhilosophyTimeline({ fixedHeight = null }) {
                       fontSize: isMobile ? (isCanon ? 11.5 : 10.5) : (isCanon ? 12.5 : 11.5),
                       lineHeight: 1.2, marginTop: isCanon ? 7 : 5,
                       whiteSpace: 'nowrap', color: isCanon ? 'oklch(0.88 0.08 88)' : PAL.inkMid, fontWeight: isCanon ? 600 : 500,
-                      fontFamily: lang === 'zh' ? '"Noto Serif SC", serif' : '"EB Garamond", serif',
+                      fontFamily: lang === 'zh' ? FONT_SERIF_ZH : FONT_SERIF_EN,
                       overflow: 'hidden', textOverflow: 'ellipsis',
                       textShadow: isCanon ? '0 0 14px rgba(219,190,112,0.15)' : 'none',
                     }}>{displayName}</div>
                     <div style={{
                       fontSize: isMobile ? 8 : 8.5, color: isCanon ? 'rgba(242,236,220,0.62)' : PAL.inkSoft,
-                      fontFamily: '"IBM Plex Mono", monospace', marginTop: 2,
+                      fontFamily: FONT_MONO, marginTop: 2,
                       letterSpacing: '0.02em', whiteSpace: 'nowrap',
                     }}>{fmtLife(p, lang)}</div>
                     {q && hoveredId === n.id && !selectedId && (
@@ -691,7 +703,7 @@ function PhilosophyTimeline({ fixedHeight = null }) {
         <div style={{
           position: 'absolute', top: isMobile ? 12 : 14, right: isMobile ? 12 : 24,
           display: 'flex', border: '1px solid rgba(242,236,220,0.15)',
-          fontFamily: '"IBM Plex Mono", monospace',
+          fontFamily: FONT_MONO,
           background: 'rgba(8,12,24,0.58)', zIndex: 6,
           boxShadow: '0 10px 28px rgba(0,0,0,0.18)',
           backdropFilter: 'blur(12px)',
@@ -814,7 +826,7 @@ function Header({ lang, setLang, isMobile = false, onOpenTest }) {
       <div style={{ display: 'flex', alignItems: 'baseline', gap: isMobile ? 0 : 18, minWidth: 0 }}>
         <div style={{
           fontSize: isMobile ? 24 : 30, fontWeight: 500, letterSpacing: lang === 'zh' ? '0.08em' : 0,
-          fontFamily: lang === 'zh' ? '"Noto Serif SC", serif' : '"EB Garamond", serif',
+          fontFamily: lang === 'zh' ? FONT_SERIF_ZH : FONT_SERIF_EN,
           fontStyle: lang === 'en' ? 'italic' : 'normal',
           color: PAL.ink, lineHeight: 1,
           whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
@@ -828,7 +840,7 @@ function Header({ lang, setLang, isMobile = false, onOpenTest }) {
             }}/>
             <div style={{
               fontSize: 13, letterSpacing: '0.18em', textTransform: 'uppercase',
-              color: PAL.inkSoft, fontFamily: '"EB Garamond", serif',
+              color: PAL.inkSoft, fontFamily: FONT_SERIF_EN,
               fontStyle: 'italic', fontVariant: 'small-caps',
             }}>
               Historia Philosophiae Occidentalis
@@ -845,14 +857,14 @@ function Header({ lang, setLang, isMobile = false, onOpenTest }) {
             background: 'rgba(219,190,112,0.06)',
             color: PAL.ink,
             cursor: 'pointer',
-            fontFamily: '"IBM Plex Mono", monospace',
+            fontFamily: FONT_MONO,
             fontSize: 10,
             letterSpacing: '0.12em',
           }}>{lang === 'zh' ? '人格测试' : 'Test'}</button>
         )}
         <div aria-label="Language" style={{
           display: 'flex', alignItems: 'center', gap: 6,
-          fontFamily: '"IBM Plex Mono", monospace', fontSize: 10,
+          fontFamily: FONT_MONO, fontSize: 10,
           color: PAL.inkSoft, padding: '3px 2px',
         }}>
           {[['zh','中文'],['en','EN']].map(([k, l], i) => (
@@ -891,7 +903,7 @@ function SchoolSelector({ schools, activeSchool, counts, onSelect, onClear, lang
   return (
     <div ref={panelRef} className="phi-panel" style={{
       position: 'absolute', top: isMobile ? 12 : 14, left: isMobile ? 12 : 24, zIndex: 7,
-      fontFamily: lang === 'zh' ? '"Noto Serif SC", serif' : '"EB Garamond", serif',
+      fontFamily: lang === 'zh' ? FONT_SERIF_ZH : FONT_SERIF_EN,
     }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
         <button onClick={() => setOpen(o => !o)} aria-expanded={open} style={{
@@ -906,7 +918,7 @@ function SchoolSelector({ schools, activeSchool, counts, onSelect, onClear, lang
         }}>
           <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{label}</span>
           <span style={{
-            fontFamily: '"IBM Plex Mono", monospace', fontSize: 10,
+            fontFamily: FONT_MONO, fontSize: 10,
             color: active ? PAL.gold : PAL.inkSoft,
             transform: open ? 'rotate(180deg)' : 'none', transition: 'transform .15s',
           }}>⌄</span>
@@ -915,7 +927,7 @@ function SchoolSelector({ schools, activeSchool, counts, onSelect, onClear, lang
           <button onClick={onClear} style={{
             height: 30, padding: '0 7px', border: 'none',
             background: 'transparent', color: PAL.inkSoft,
-            cursor: 'pointer', fontFamily: '"IBM Plex Mono", monospace',
+            cursor: 'pointer', fontFamily: FONT_MONO,
             fontSize: 8.5, letterSpacing: '0.08em',
           }}>{lang === 'zh' ? '清除' : 'Clear'}</button>
         )}
@@ -945,7 +957,7 @@ function SchoolSelector({ schools, activeSchool, counts, onSelect, onClear, lang
             }}>
               <div style={{
                 fontSize: 12, letterSpacing: '0.16em', color: PAL.inkSoft,
-                fontFamily: '"IBM Plex Mono", monospace',
+                fontFamily: FONT_MONO,
               }}>{lang === 'zh' ? '选择流派' : 'Choose School'}</div>
               <button onClick={() => setOpen(false)} style={{
                 background: 'transparent', border: 'none', color: PAL.inkSoft,
@@ -975,7 +987,7 @@ function SchoolSelector({ schools, activeSchool, counts, onSelect, onClear, lang
                   whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
                 }}>{lang === 'zh' ? s.zh : s.en}</span>
                 <span style={{
-                  fontFamily: '"IBM Plex Mono", monospace', fontSize: 9,
+                  fontFamily: FONT_MONO, fontSize: 9,
                   color: on ? PAL.gold : PAL.inkSoft,
                 }}>{count}</span>
               </button>
@@ -1104,7 +1116,7 @@ function EraBar({ eras, onJump, scrollX, viewportW, lang, isMobile = false }) {
     <div style={{
       display: 'flex', padding: isMobile ? '0 4px' : '0 24px',
       borderBottom: '1px solid rgba(242,236,220,0.10)',
-      fontFamily: '"IBM Plex Mono", monospace',
+      fontFamily: FONT_MONO,
       fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase',
       height: isMobile ? 42 : 46,
       background: 'linear-gradient(180deg, rgba(242,236,220,0.018), rgba(242,236,220,0.004))',
@@ -1148,7 +1160,7 @@ function EraBar({ eras, onJump, scrollX, viewportW, lang, isMobile = false }) {
               display: 'flex', alignItems: 'baseline', gap: 8,
             }}>
               <span style={{ fontSize: isMobile ? 10.5 : 13, fontWeight: 500,
-                fontFamily: lang === 'zh' ? '"Noto Serif SC", serif' : '"EB Garamond", serif',
+                fontFamily: lang === 'zh' ? FONT_SERIF_ZH : FONT_SERIF_EN,
                 textTransform: 'none', letterSpacing: 0, fontStyle: lang === 'en' ? 'italic' : 'normal',
                 whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
               }}>
@@ -1255,7 +1267,7 @@ function MobileActionBar({ lang, listOpen, legendOpen, testOpen, onToggleList, o
           color: active ? PAL.ink : PAL.inkMid,
           boxShadow: '0 12px 26px rgba(0,0,0,0.22)',
           backdropFilter: 'blur(14px)',
-          fontFamily: lang === 'zh' ? '"Noto Serif SC", serif' : '"EB Garamond", serif',
+          fontFamily: lang === 'zh' ? FONT_SERIF_ZH : FONT_SERIF_EN,
           fontSize: 13, cursor: 'pointer',
         }}>{label}</button>
       ))}
@@ -1272,7 +1284,7 @@ function RelationLegend({ lang, isMobile = false, open = true }) {
       bottom: isMobile ? 62 : 18,
       background: 'rgba(8,12,24,0.66)', border: '1px solid rgba(242,236,220,0.18)',
       padding: '10px 14px', zIndex: 5,
-      fontFamily: '"IBM Plex Mono", monospace',
+      fontFamily: FONT_MONO,
       boxShadow: '0 12px 28px rgba(0,0,0,0.18)',
       backdropFilter: 'blur(12px)',
       width: isMobile ? 190 : 'auto',
@@ -1287,7 +1299,7 @@ function RelationLegend({ lang, isMobile = false, open = true }) {
             <svg width="26" height="6"><line x1="0" y1="3" x2="26" y2="3"
               stroke={REL_COLORS[k]} strokeWidth="1.35" strokeLinecap="round"
               strokeDasharray={k === 'influence' ? '3 3' : '0'}/></svg>
-            <span style={{ fontFamily: lang === 'zh' ? '"Noto Serif SC", serif' : 'inherit' }}>
+            <span style={{ fontFamily: lang === 'zh' ? FONT_SERIF_ZH : 'inherit' }}>
               {lang === 'zh' ? v.zh : v.en}
             </span>
           </div>
@@ -1316,7 +1328,7 @@ function MobilePhilosopherList({ eras, philosophers, lang, selectedId, onJump, o
       overflowY: 'auto',
       padding: '12px 14px 20px',
       boxSizing: 'border-box',
-      fontFamily: lang === 'zh' ? '"Noto Serif SC", serif' : '"EB Garamond", serif',
+      fontFamily: lang === 'zh' ? FONT_SERIF_ZH : FONT_SERIF_EN,
     }}>
       <div style={{
         position: 'sticky', top: -12, zIndex: 2,
@@ -1343,7 +1355,7 @@ function MobilePhilosopherList({ eras, philosophers, lang, selectedId, onJump, o
           }}>
             <EraIcon id={era.id} size={16}/>
             <span style={{
-              fontSize: 11, fontFamily: '"IBM Plex Mono", monospace',
+              fontSize: 11, fontFamily: FONT_MONO,
               letterSpacing: '0.14em', color: PAL.inkSoft,
             }}>{lang === 'zh' ? era.zh : era.en}</span>
           </div>
@@ -1378,7 +1390,7 @@ function MobilePhilosopherList({ eras, philosophers, lang, selectedId, onJump, o
                     }}>{lang === 'zh' ? p.zh : p.en}</div>
                     <div style={{
                       marginTop: 1, fontSize: 8.5, color: PAL.inkSoft,
-                      fontFamily: '"IBM Plex Mono", monospace', whiteSpace: 'nowrap',
+                      fontFamily: FONT_MONO, whiteSpace: 'nowrap',
                     }}>{fmtLife(p, lang)}</div>
                   </div>
                 </button>
@@ -1470,7 +1482,7 @@ function PersonalityTestPanel({ lang, isMobile, philosophers, savedResult, onClo
         boxShadow: '0 24px 60px rgba(0,0,0,0.42)',
         padding: isMobile ? '16px 16px 22px' : '24px',
         boxSizing: 'border-box',
-        fontFamily: lang === 'zh' ? '"Noto Serif SC", serif' : '"EB Garamond", serif',
+        fontFamily: lang === 'zh' ? FONT_SERIF_ZH : FONT_SERIF_EN,
       }}>
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -1479,7 +1491,7 @@ function PersonalityTestPanel({ lang, isMobile, philosophers, savedResult, onClo
           <div>
             <div style={{
               fontSize: 10, letterSpacing: '0.18em', color: PAL.gold,
-              fontFamily: '"IBM Plex Mono", monospace',
+              fontFamily: FONT_MONO,
             }}>{lang === 'zh' ? 'PHILOSOPHY TEST' : 'PHILOSOPHY TEST'}</div>
             <div style={{ marginTop: 4, fontSize: isMobile ? 20 : 24, color: PAL.ink }}>
               {lang === 'zh' ? '哲学人格测试' : 'Philosophy Personality Test'}
@@ -1526,7 +1538,7 @@ function PersonalityTestPanel({ lang, isMobile, philosophers, savedResult, onClo
             }}>
               <div>
                 <div style={{
-                  fontFamily: '"IBM Plex Mono", monospace',
+                  fontFamily: FONT_MONO,
                   fontSize: 10, letterSpacing: '0.12em', color: PAL.inkSoft,
                 }}>{String(step + 1).padStart(2, '0')} / {PERSONALITY_QUESTIONS.length}</div>
                 <div style={{
@@ -1556,10 +1568,10 @@ function PersonalityTestPanel({ lang, isMobile, philosophers, savedResult, onClo
                       cursor: 'pointer',
                       textAlign: 'left',
                       boxShadow: 'inset 0 1px 0 rgba(242,236,220,0.04)',
-                      fontFamily: lang === 'zh' ? '"Noto Serif SC", serif' : '"EB Garamond", serif',
+                      fontFamily: lang === 'zh' ? FONT_SERIF_ZH : FONT_SERIF_EN,
                     }}>
                       <div style={{
-                        fontFamily: '"IBM Plex Mono", monospace',
+                        fontFamily: FONT_MONO,
                         fontSize: 10, letterSpacing: '0.14em',
                         color: option.side === 'left' ? PAL.gold : PAL.inkSoft,
                         marginBottom: 10,
@@ -1620,7 +1632,7 @@ function PersonalityResult({ result, philosophers, isMobile, lang, onRetake, onS
         {saveStatus && (
           <div style={{
             marginTop: 8, color: PAL.inkSoft, fontSize: 11,
-            fontFamily: '"IBM Plex Mono", monospace',
+            fontFamily: FONT_MONO,
           }}>{saveStatus}</div>
         )}
       </div>
@@ -1636,7 +1648,7 @@ function PersonalityResult({ result, philosophers, isMobile, lang, onRetake, onS
         minWidth: 0,
       }}>
         <div style={{
-          color: PAL.gold, fontFamily: '"IBM Plex Mono", monospace',
+          color: PAL.gold, fontFamily: FONT_MONO,
           fontSize: 10, letterSpacing: '0.18em',
         }}>{result.id}</div>
         <h2 style={{
@@ -1681,7 +1693,7 @@ function PersonalityResult({ result, philosophers, isMobile, lang, onRetake, onS
             <span key={k} style={{
               border: '1px solid rgba(219,190,112,0.22)',
               color: PAL.gold, padding: '3px 8px',
-              fontSize: 11, fontFamily: '"IBM Plex Mono", "Noto Serif SC", serif',
+              fontSize: 11, fontFamily: FONT_MONO,
             }}>{k}</span>
           ))}
         </div>
@@ -1703,7 +1715,7 @@ function PersonalityResult({ result, philosophers, isMobile, lang, onRetake, onS
                 <div style={{
                   display: 'flex', justifyContent: 'space-between',
                   fontSize: 10, color: PAL.inkSoft,
-                  fontFamily: '"IBM Plex Mono", monospace',
+                  fontFamily: FONT_MONO,
                 }}>
                   <span>{axis.leftLabel}</span><span>{axis.rightLabel}</span>
                 </div>
@@ -1775,7 +1787,7 @@ function ShareCardPreview({ result, people, isMobile }) {
       ))}
       <div>
         <div style={{
-          fontFamily: '"IBM Plex Mono", monospace',
+          fontFamily: FONT_MONO,
           fontSize: isMobile ? 8 : 8.8, letterSpacing: '0.14em',
           color: PAL.gold,
         }}>西方哲学史 · 哲学人格测试</div>
@@ -1827,7 +1839,7 @@ function ShareCardPreview({ result, people, isMobile }) {
         }}>
           <div style={{
             color: PAL.inkSoft,
-            fontFamily: '"IBM Plex Mono", monospace', fontSize: isMobile ? 8.8 : 9.2,
+            fontFamily: FONT_MONO, fontSize: isMobile ? 8.8 : 9.2,
             letterSpacing: '0.13em',
           }}>{result.id}</div>
           <div aria-hidden style={{
@@ -1853,7 +1865,7 @@ function personalityButtonStyle(primary) {
     background: primary ? 'rgba(219,190,112,0.10)' : 'transparent',
     color: primary ? PAL.ink : PAL.inkMid,
     cursor: 'pointer',
-    fontFamily: '"Noto Serif SC", serif',
+    fontFamily: FONT_SERIF_ZH,
     fontSize: 12,
   };
 }
@@ -1892,9 +1904,20 @@ function fitCanvasText(ctx, text, x, y, maxWidth, maxFontSize, minFontSize, font
 function loadCanvasImage(src) {
   return new Promise((resolve, reject) => {
     const img = new Image();
+    const timer = setTimeout(() => {
+      img.onload = null;
+      img.onerror = null;
+      reject(new Error('image load timeout'));
+    }, REMOTE_PORTRAIT_TIMEOUT_MS);
     img.crossOrigin = 'anonymous';
-    img.onload = () => resolve(img);
-    img.onerror = reject;
+    img.onload = () => {
+      clearTimeout(timer);
+      resolve(img);
+    };
+    img.onerror = (error) => {
+      clearTimeout(timer);
+      reject(error);
+    };
     img.src = src;
   });
 }
@@ -1935,14 +1958,14 @@ async function renderPersonalityCardToPng(result, philosophers) {
   ctx.strokeRect(82, 82, 916, 1276);
 
   ctx.fillStyle = '#dbc070';
-  ctx.font = '24px "IBM Plex Mono", monospace';
+  ctx.font = `24px ${FONT_MONO}`;
   ctx.letterSpacing = '2px';
   ctx.fillText('西方哲学史 · 哲学人格测试', 104, 140);
 
-  fitCanvasText(ctx, type.name, 104, 248, 872, 56, 42, '"Noto Serif SC", serif', '#f2ecdc');
+  fitCanvasText(ctx, type.name, 104, 248, 872, 56, 42, FONT_SERIF_ZH, '#f2ecdc');
 
   ctx.fillStyle = 'rgba(242,236,220,0.72)';
-  ctx.font = '30px "Noto Serif SC", serif';
+  ctx.font = `30px ${FONT_SERIF_ZH}`;
   wrapCanvasText(ctx, type.subtitle, 106, 392, 820, 42, 2);
 
   ctx.save();
@@ -1965,7 +1988,7 @@ async function renderPersonalityCardToPng(result, philosophers) {
     ctx.beginPath(); ctx.arc(0, 0, 98, 0, Math.PI * 2); ctx.stroke();
   } else {
     ctx.fillStyle = '#dbc070';
-    ctx.font = '88px "Noto Serif SC", serif';
+    ctx.font = `88px ${FONT_SERIF_ZH}`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     const mark = firstPerson ? (firstPerson.zh || firstPerson.en).slice(0, 1) : result.id.slice(0, 1);
@@ -1976,16 +1999,16 @@ async function renderPersonalityCardToPng(result, philosophers) {
   ctx.textAlign = 'center';
   ctx.textBaseline = 'alphabetic';
   ctx.fillStyle = '#f2ecdc';
-  ctx.font = '34px "Noto Serif SC", serif';
+  ctx.font = `34px ${FONT_SERIF_ZH}`;
   ctx.fillText(people.map(p => p.zh || p.en).join(' · '), 540, 784);
 
   ctx.textAlign = 'left';
   ctx.fillStyle = '#dbc070';
-  ctx.font = '26px "IBM Plex Mono", monospace';
+  ctx.font = `26px ${FONT_MONO}`;
   ctx.fillText(type.keywords.join(' / '), 104, 882);
 
   ctx.fillStyle = 'rgba(242,236,220,0.82)';
-  ctx.font = '32px "Noto Serif SC", serif';
+  ctx.font = `32px ${FONT_SERIF_ZH}`;
   wrapCanvasText(ctx, type.message, 104, 958, 872, 52, 5);
 
   let y = 1190;
@@ -1993,7 +2016,7 @@ async function renderPersonalityCardToPng(result, philosophers) {
     const score = result.scores[axis.key] || 0;
     const pct = Math.max(0, Math.min(1, (score + 6) / 12));
     ctx.fillStyle = 'rgba(242,236,220,0.58)';
-    ctx.font = '22px "Noto Serif SC", serif';
+    ctx.font = `22px ${FONT_SERIF_ZH}`;
     ctx.fillText(axis.leftLabel, 104, y);
     ctx.textAlign = 'right';
     ctx.fillText(axis.rightLabel, 976, y);
@@ -2006,7 +2029,7 @@ async function renderPersonalityCardToPng(result, philosophers) {
   });
 
   ctx.fillStyle = 'rgba(242,236,220,0.44)';
-  ctx.font = '22px "IBM Plex Mono", monospace';
+  ctx.font = `22px ${FONT_MONO}`;
   ctx.fillText(`TYPE ${result.id}`, 104, 1330);
   ctx.textAlign = 'right';
   ctx.fillText('Historia Philosophiae Occidentalis', 976, 1330);
@@ -2020,7 +2043,7 @@ async function renderPersonalityCardToPng(result, philosophers) {
     ctx.fillRect(878 + (i % 3) * 24, 1230 + Math.floor(i / 3) * 24, i % 2 ? 10 : 16, i % 2 ? 16 : 10);
   }
   ctx.fillStyle = 'rgba(242,236,220,0.44)';
-  ctx.font = '18px "IBM Plex Mono", monospace';
+  ctx.font = `18px ${FONT_MONO}`;
   ctx.fillText('SHARE', 874, 1340);
 
   return canvas.toDataURL('image/png');
@@ -2512,7 +2535,7 @@ function DetailPanel({ philosopher, lang, onClose, schools, isMobile = false }) 
         position: 'absolute', right: 12, top: 10,
         background: 'transparent', border: 'none',
         fontSize: 22, color: PAL.inkSoft, cursor: 'pointer',
-        fontFamily: '"EB Garamond", serif', lineHeight: 1,
+        fontFamily: FONT_SERIF_EN, lineHeight: 1,
       }}>×</button>
       {isMobile && (
         <div aria-hidden style={{
@@ -2540,7 +2563,7 @@ function DetailPanel({ philosopher, lang, onClose, schools, isMobile = false }) 
           <div style={{ fontSize: isMobile ? 22 : 24, fontWeight: 500, lineHeight: 1.1,
             color: isCanon ? 'oklch(0.89 0.07 88)' : PAL.ink,
             whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
-            fontFamily: lang === 'zh' ? '"Noto Serif SC", serif' : '"EB Garamond", serif' }}>{name}</div>
+            fontFamily: lang === 'zh' ? FONT_SERIF_ZH : FONT_SERIF_EN }}>{name}</div>
           <div style={{
             display: 'flex', alignItems: 'center', gap: 7, marginTop: 6,
             minWidth: 0, flexWrap: 'wrap',
@@ -2553,7 +2576,7 @@ function DetailPanel({ philosopher, lang, onClose, schools, isMobile = false }) 
             {schoolNames.map(s => (
               <span key={s.id} style={{
                 fontSize: 9.5, padding: '2px 6px', border: '1px solid rgba(242,236,220,0.16)',
-                fontFamily: '"IBM Plex Mono", monospace', letterSpacing: '0.04em',
+                fontFamily: FONT_MONO, letterSpacing: '0.04em',
                 color: PAL.inkSoft, background: 'rgba(242,236,220,0.032)',
                 whiteSpace: 'nowrap',
               }}>{lang === 'zh' ? s.zh : s.en}</span>
@@ -2565,7 +2588,7 @@ function DetailPanel({ philosopher, lang, onClose, schools, isMobile = false }) 
         <blockquote style={{
           margin: '12px 0 10px', padding: '5px 0',
           borderLeft: 'none',
-          fontSize: isMobile ? 13 : 13.5, fontFamily: lang==='zh' ? '"Noto Serif SC", serif' : '"EB Garamond", serif',
+          fontSize: isMobile ? 13 : 13.5, fontFamily: lang==='zh' ? FONT_SERIF_ZH : FONT_SERIF_EN,
           lineHeight: 1.55, color: isCanon ? PAL.ink : PAL.inkMid,
         }}>{quote}</blockquote>
       )}
@@ -2580,7 +2603,7 @@ function DetailPanel({ philosopher, lang, onClose, schools, isMobile = false }) 
                 color: PAL.inkMid,
               }}>
                 <span style={{ color: isCanon ? PAL.gold : PAL.inkSoft,
-                  fontFamily: '"IBM Plex Mono", monospace', fontSize: 9 }}>{String(i + 1).padStart(2, '0')}</span>
+                  fontFamily: FONT_MONO, fontSize: 9 }}>{String(i + 1).padStart(2, '0')}</span>
                 <span>{w}</span>
               </div>
             ))}
@@ -2599,12 +2622,12 @@ function ProfileSection({ title, children, lang }) {
     }}>
       <div style={{
         fontSize: 9, letterSpacing: '0.22em', textTransform: 'uppercase',
-        fontFamily: '"IBM Plex Mono", monospace', color: PAL.inkSoft,
+        fontFamily: FONT_MONO, color: PAL.inkSoft,
         marginBottom: 7,
       }}>{title}</div>
       <div style={{
         fontSize: 13.5, lineHeight: 1.72, color: PAL.inkMid,
-        fontFamily: lang === 'zh' ? '"Noto Serif SC", serif' : '"EB Garamond", serif',
+        fontFamily: lang === 'zh' ? FONT_SERIF_ZH : FONT_SERIF_EN,
       }}>{children}</div>
     </section>
   );
