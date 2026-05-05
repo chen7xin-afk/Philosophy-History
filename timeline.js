@@ -117,7 +117,7 @@ const PAL = {
 const FONT_SERIF_ZH = 'ui-serif, "Songti SC", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", SimSun, Georgia, serif';
 const FONT_SERIF_EN = 'Georgia, "Times New Roman", "Songti SC", "STSong", serif';
 const FONT_MONO = 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace';
-const ENABLE_REMOTE_PORTRAITS = new URLSearchParams(window.location.search).get('portraits') !== '0';
+const ENABLE_REMOTE_PORTRAITS = new URLSearchParams(window.location.search).get('portraits') === '1';
 const REMOTE_PORTRAIT_TIMEOUT_MS = 1600;
 const CANON_PHILOSOPHER_IDS = new Set(['socrates', 'plato', 'aristotle', 'augustine', 'aquinas', 'machiavelli', 'descartes', 'locke', 'hume', 'kant', 'hegel', 'marx', 'nietzsche', 'wittgenstein', 'heidegger']);
 const PERSONALITY_AXES = [{
@@ -393,6 +393,7 @@ const PERSONALITY_TYPES = {
 // Fetches a thumbnail from Wikipedia (REST summary API). Falls back to an
 // engraved silhouette while loading or if the article has no image.
 const WIKI_OVERRIDES = window.PHI_DATA && window.PHI_DATA.WIKI_TITLES || {};
+const LOCAL_PORTRAITS = window.PHI_LOCAL_PORTRAITS || {};
 const PORTRAIT_OVERRIDES = ENABLE_REMOTE_PORTRAITS ? {
   descartes: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg/256px-Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg'
 } : {};
@@ -486,13 +487,17 @@ function Cameo({
   en,
   size = 46
 }) {
-  const [src, setSrc] = useState(PORTRAIT_OVERRIDES[id] || null);
+  const localSrc = LOCAL_PORTRAITS[id] || null;
+  const [src, setSrc] = useState(localSrc || PORTRAIT_OVERRIDES[id] || null);
   const [errored, setErrored] = useState(false);
   useEffect(() => {
     let cancel = false;
-    const directSrc = PORTRAIT_OVERRIDES[id] || null;
+    const directSrc = LOCAL_PORTRAITS[id] || PORTRAIT_OVERRIDES[id] || null;
     setSrc(directSrc);
     setErrored(false);
+    if (directSrc && !ENABLE_REMOTE_PORTRAITS) return () => {
+      cancel = true;
+    };
     fetchWikiThumb(wikiTitleFor(id, en)).then(url => {
       if (!cancel) {
         if (url) setSrc(url);else if (!directSrc) setErrored(true);
@@ -2756,7 +2761,7 @@ async function renderPersonalityCardToPng(result, philosophers) {
   const type = result.type;
   const people = type.philosophers.map(id => philosophers.find(p => p.id === id)).filter(Boolean);
   const firstPerson = people[0];
-  const portraitUrl = firstPerson ? PORTRAIT_OVERRIDES[firstPerson.id] || (await fetchWikiThumb(wikiTitleFor(firstPerson.id, firstPerson.en))) : null;
+  const portraitUrl = firstPerson ? LOCAL_PORTRAITS[firstPerson.id] || PORTRAIT_OVERRIDES[firstPerson.id] || (await fetchWikiThumb(wikiTitleFor(firstPerson.id, firstPerson.en))) : null;
   const portrait = portraitUrl ? await loadCanvasImage(portraitUrl).catch(() => null) : null;
   const bg = ctx.createLinearGradient(0, 0, 0, 1440);
   bg.addColorStop(0, '#12182b');
@@ -2834,41 +2839,47 @@ async function renderPersonalityCardToPng(result, philosophers) {
   ctx.fillText(type.keywords.join(' / '), 104, 882);
   ctx.fillStyle = 'rgba(242,236,220,0.82)';
   ctx.font = `32px ${FONT_SERIF_ZH}`;
-  wrapCanvasText(ctx, type.message, 104, 958, 872, 52, 5);
-  let y = 1190;
+  wrapCanvasText(ctx, type.message, 104, 958, 872, 52, 4);
+  ctx.strokeStyle = 'rgba(242,236,220,0.10)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(104, 1128);
+  ctx.lineTo(976, 1128);
+  ctx.stroke();
+  let y = 1170;
   PERSONALITY_AXES.forEach(axis => {
     const score = result.scores[axis.key] || 0;
     const pct = Math.max(0, Math.min(1, (score + 6) / 12));
     ctx.fillStyle = 'rgba(242,236,220,0.58)';
-    ctx.font = `22px ${FONT_SERIF_ZH}`;
+    ctx.font = `20px ${FONT_SERIF_ZH}`;
     ctx.fillText(axis.leftLabel, 104, y);
     ctx.textAlign = 'right';
-    ctx.fillText(axis.rightLabel, 976, y);
+    ctx.fillText(axis.rightLabel, 820, y);
     ctx.textAlign = 'left';
     ctx.fillStyle = 'rgba(242,236,220,0.15)';
-    ctx.fillRect(220, y - 12, 640, 4);
+    ctx.fillRect(220, y - 11, 536, 4);
     ctx.fillStyle = '#dbc070';
     ctx.beginPath();
-    ctx.arc(220 + pct * 640, y - 10, 9, 0, Math.PI * 2);
+    ctx.arc(220 + pct * 536, y - 9, 8, 0, Math.PI * 2);
     ctx.fill();
-    y += 44;
+    y += 38;
   });
-  ctx.fillStyle = 'rgba(242,236,220,0.44)';
-  ctx.font = `22px ${FONT_MONO}`;
-  ctx.fillText(`TYPE ${result.id}`, 104, 1330);
-  ctx.textAlign = 'right';
-  ctx.fillText('Historia Philosophiae Occidentalis', 976, 1330);
   ctx.textAlign = 'left';
   ctx.strokeStyle = 'rgba(242,236,220,0.18)';
   ctx.lineWidth = 2;
-  ctx.strokeRect(866, 1218, 92, 92);
+  ctx.strokeRect(878, 1178, 82, 82);
   ctx.fillStyle = 'rgba(242,236,220,0.12)';
   for (let i = 0; i < 9; i++) {
-    ctx.fillRect(878 + i % 3 * 24, 1230 + Math.floor(i / 3) * 24, i % 2 ? 10 : 16, i % 2 ? 16 : 10);
+    ctx.fillRect(890 + i % 3 * 21, 1190 + Math.floor(i / 3) * 21, i % 2 ? 9 : 14, i % 2 ? 14 : 9);
   }
+  ctx.fillStyle = 'rgba(242,236,220,0.40)';
+  ctx.font = `16px ${FONT_MONO}`;
+  ctx.fillText('SHARE', 889, 1290);
   ctx.fillStyle = 'rgba(242,236,220,0.44)';
-  ctx.font = `18px ${FONT_MONO}`;
-  ctx.fillText('SHARE', 874, 1340);
+  ctx.font = `20px ${FONT_MONO}`;
+  ctx.fillText(`TYPE ${result.id}`, 104, 1340);
+  ctx.textAlign = 'right';
+  ctx.fillText('Historia Philosophiae Occidentalis', 976, 1340);
   return canvas.toDataURL('image/png');
 }
 async function downloadPersonalityCard(result, philosophers) {

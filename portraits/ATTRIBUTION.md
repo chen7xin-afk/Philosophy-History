@@ -1,0 +1,127 @@
+# Portrait Sources
+
+Portrait thumbnails are cached locally from Wikipedia/Wikimedia sources for stable static loading.
+
+- 泰勒斯 / Thales: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Illustrerad_Verldshistoria_band_I_Ill_107.jpg/330px-Illustrerad_Verldshistoria_band_I_Ill_107.jpg
+- 阿那克西曼德 / Anaximander: https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Pietro_Bellotti_%28attr%29_Anaximander.jpg/330px-Pietro_Bellotti_%28attr%29_Anaximander.jpg
+- 毕达哥拉斯 / Pythagoras: https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Pythagoras_in_the_Roman_Forum%2C_Colosseum.jpg/330px-Pythagoras_in_the_Roman_Forum%2C_Colosseum.jpg
+- 赫拉克利特 / Heraclitus: https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Heraclitus_b_4_compressed.jpg/330px-Heraclitus_b_4_compressed.jpg
+- 巴门尼德 / Parmenides: https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Busto_di_Parmenide_%28cropped%29.jpg/330px-Busto_di_Parmenide_%28cropped%29.jpg
+- 芝诺（爱利亚） / Zeno of Elea: https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Portretbuste_van_Zeno_van_Elea_Paradigmata_graphices_variorum_artificum_%28serietitel%29%2C_RP-P-1907-4495.jpg/330px-Portretbuste_van_Zeno_van_Elea_Paradigmata_graphices_variorum_artificum_%28serietitel%29%2C_RP-P-1907-4495.jpg
+- 德谟克利特 / Democritus: https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Unknown_greek_pushkin.jpg/330px-Unknown_greek_pushkin.jpg
+- 普罗泰戈拉 / Protagoras: https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Ribera_-_Protagoras%2C_1637.jpg/330px-Ribera_-_Protagoras%2C_1637.jpg
+- 苏格拉底 / Socrates: https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Socrates_Louvre.jpg/330px-Socrates_Louvre.jpg
+- 柏拉图 / Plato: https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Plato_Silanion_Musei_Capitolini_MC1377.png/330px-Plato_Silanion_Musei_Capitolini_MC1377.png
+- 亚里士多德 / Aristotle: https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Aristotle_Altemps_Inv8575.jpg/330px-Aristotle_Altemps_Inv8575.jpg
+- 第欧根尼 / Diogenes: https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Diogenes_Mosaic_R%C3%B6misch-Germanisches_Museum.jpg/330px-Diogenes_Mosaic_R%C3%B6misch-Germanisches_Museum.jpg
+- 皮浪 / Pyrrho: https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Philosopher%2C_marble_head%2C_Roman_copy%2C_AM_Corfu%2C_Krfm22.jpg/330px-Philosopher%2C_marble_head%2C_Roman_copy%2C_AM_Corfu%2C_Krfm22.jpg
+- 伊壁鸠鲁 / Epicurus: https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Epikouros_BM_1843.jpg/330px-Epikouros_BM_1843.jpg
+- 芝诺（季蒂昂） / Zeno of Citium: https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Paolo_Monti_-_Servizio_fotografico_%28Napoli%2C_1969%29_-_BEIC_6353768.jpg/330px-Paolo_Monti_-_Servizio_fotografico_%28Napoli%2C_1969%29_-_BEIC_6353768.jpg
+- 爱比克泰德 / Epictetus: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Epicteti_Enchiridion_Latinis_versibus_adumbratum_%28Oxford_1715%29_frontispiece_%28cropped%29.jpg/330px-Epicteti_Enchiridion_Latinis_versibus_adumbratum_%28Oxford_1715%29_frontispiece_%28cropped%29.jpg
+- 马可·奥勒留 / Marcus Aurelius: https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/MSR-ra-61-b-1-DM.jpg/330px-MSR-ra-61-b-1-DM.jpg
+- 普罗提诺 / Plotinus: https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Plotinos.jpg/330px-Plotinos.jpg
+- 奥古斯丁 / Augustine: https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Saint_Augustine_by_Philippe_de_Champaigne.jpg/330px-Saint_Augustine_by_Philippe_de_Champaigne.jpg
+- 阿维森纳 / Avicenna: https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Avicenna_Bust%2C_left_profile_%28cropped%29.jpg/330px-Avicenna_Bust%2C_left_profile_%28cropped%29.jpg
+- 阿威罗伊 / Averroes: https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Andrea_di_bonaiuto%2C_apotesosi_di_san_tommaso_d%27aquino%2C_11_averro%C3%A8.jpg/330px-Andrea_di_bonaiuto%2C_apotesosi_di_san_tommaso_d%27aquino%2C_11_averro%C3%A8.jpg
+- 阿奎那 / Aquinas: https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/St-thomas-aquinasFXD.jpg/330px-St-thomas-aquinasFXD.jpg
+- 弗朗西斯·培根 / Francis Bacon: https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Somer_Francis_Bacon.jpg/330px-Somer_Francis_Bacon.jpg
+- 霍布斯 / Hobbes: https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Thomas_Hobbes_by_John_Michael_Wright_%28colour%29_%283x4_cropped%29.jpg/330px-Thomas_Hobbes_by_John_Michael_Wright_%28colour%29_%283x4_cropped%29.jpg
+- 斯宾诺莎 / Spinoza: https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Spinoza.jpg/330px-Spinoza.jpg
+- 洛克 / Locke: https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Godfrey_Kneller_-_Portrait_of_John_Locke_%28Hermitage%29.jpg/330px-Godfrey_Kneller_-_Portrait_of_John_Locke_%28Hermitage%29.jpg
+- 莱布尼茨 / Leibniz: https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Christoph_Bernhard_Francke_-_Bildnis_des_Philosophen_Leibniz_%28ca._1695%29.jpg/330px-Christoph_Bernhard_Francke_-_Bildnis_des_Philosophen_Leibniz_%28ca._1695%29.jpg
+- 贝克莱 / Berkeley: https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/George_Berkeley_by_John_Smibert.jpg/330px-George_Berkeley_by_John_Smibert.jpg
+- 休谟 / Hume: https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/David_Hume_Ramsay.jpg/330px-David_Hume_Ramsay.jpg
+- 帕斯卡 / Pascal: https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Blaise_Pascal_Versailles.JPG/330px-Blaise_Pascal_Versailles.JPG
+- 伏尔泰 / Voltaire: https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Nicolas_de_Largilli%C3%A8re_-_Portrait_de_Voltaire_%281694-1778%29_en_1718_-_P208_-_mus%C3%A9e_Carnavalet_-_5_%28cropped%29.jpg/330px-Nicolas_de_Largilli%C3%A8re_-_Portrait_de_Voltaire_%281694-1778%29_en_1718_-_P208_-_mus%C3%A9e_Carnavalet_-_5_%28cropped%29.jpg
+- 边沁 / Bentham: https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Jeremy_Bentham_by_Henry_William_Pickersgill.jpg/330px-Jeremy_Bentham_by_Henry_William_Pickersgill.jpg
+- 摩尔 / G. E. Moore: https://upload.wikimedia.org/wikipedia/commons/b/b9/1914_George_Edward_Moore_%28cropped%29.jpg
+- 怀特海 / Whitehead: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/ANWhitehead.jpg/330px-ANWhitehead.jpg
+- 波普尔 / Popper: https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Karl_Popper.jpg/330px-Karl_Popper.jpg
+- 伽达默尔 / Gadamer: https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Hans-Georg_Gadamer.jpg/330px-Hans-Georg_Gadamer.jpg
+- 列维纳斯 / Levinas: https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Emmanuel_Levinas.jpg/330px-Emmanuel_Levinas.jpg
+- 乔姆斯基 / Chomsky: https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Noam_Chomsky_portrait_2017_retouched.jpg/330px-Noam_Chomsky_portrait_2017_retouched.jpg
+- 诺齐克 / Nozick: https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Robert_Nozick_1977_Libertarian_Review_cover_%284x5_cropped%29.jpg/330px-Robert_Nozick_1977_Libertarian_Review_cover_%284x5_cropped%29.jpg
+- 麦金太尔 / MacIntyre: https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Alasdair_MacIntyre.jpg/330px-Alasdair_MacIntyre.jpg
+- 卢梭 / Rousseau: https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Jean-Jacques_Rousseau_%28painted_portrait%29.jpg/330px-Jean-Jacques_Rousseau_%28painted_portrait%29.jpg
+- 康德 / Kant: https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Immanuel_Kant_-_Gemaelde_1.jpg/330px-Immanuel_Kant_-_Gemaelde_1.jpg
+- 费希特 / Fichte: https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Johann_gottlieb_fichte.jpg/330px-Johann_gottlieb_fichte.jpg
+- 黑格尔 / Hegel: https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Jakob_Schlesinger_-_Hegel_1831.jpg/330px-Jakob_Schlesinger_-_Hegel_1831.jpg
+- 谢林 / Schelling: https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Nb_pinacoteca_stieler_friedrich_wilhelm_joseph_von_schelling.jpg/330px-Nb_pinacoteca_stieler_friedrich_wilhelm_joseph_von_schelling.jpg
+- 叔本华 / Schopenhauer: https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Arthur_Schopenhauer_by_J_Sch%C3%A4fer%2C_1859b.jpg/330px-Arthur_Schopenhauer_by_J_Sch%C3%A4fer%2C_1859b.jpg
+- 费尔巴哈 / Feuerbach: https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Ludwig_Feuerbach-1.2_V01-1.1.1_cropped_and_rotated.jpg/330px-Ludwig_Feuerbach-1.2_V01-1.1.1_cropped_and_rotated.jpg
+- 密尔 / J. S. Mill: https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/John_Stuart_Mill_by_London_Stereoscopic_Company%2C_c1870.jpg/330px-John_Stuart_Mill_by_London_Stereoscopic_Company%2C_c1870.jpg
+- 马克思 / Marx: https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Karl_Marx_by_John_Jabez_Edwin_Mayall_1875_-_Restored_%26_Adjusted_%283x4_cropped_b%29.png/330px-Karl_Marx_by_John_Jabez_Edwin_Mayall_1875_-_Restored_%26_Adjusted_%283x4_cropped_b%29.png
+- 皮尔士 / Peirce: https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Charles_Sanders_Peirce.png/330px-Charles_Sanders_Peirce.png
+- 威廉·詹姆斯 / William James: https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/William_James_b1842c.jpg/330px-William_James_b1842c.jpg
+- 尼采 / Nietzsche: https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Nietzsche187a.jpg/330px-Nietzsche187a.jpg
+- 弗雷格 / Frege: https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Young_frege.jpg/330px-Young_frege.jpg
+- 胡塞尔 / Husserl: https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Edmund_Husserl_1910s.jpg/330px-Edmund_Husserl_1910s.jpg
+- 杜威 / Dewey: https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/John_Dewey_cph.3a51565.jpg/330px-John_Dewey_cph.3a51565.jpg
+- 索绪尔 / Saussure: https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Ferdinand_de_Saussure_by_Jullien_Restored.png/330px-Ferdinand_de_Saussure_by_Jullien_Restored.png
+- 柏格森 / Bergson: https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Henri_Bergson_02.jpg/330px-Henri_Bergson_02.jpg
+- 罗素 / Russell: https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Bertrand_Russell_smoking_in_1936.jpg/330px-Bertrand_Russell_smoking_in_1936.jpg
+- 维特根斯坦 / Wittgenstein: https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Ludwig_Wittgenstein_1929.jpg/330px-Ludwig_Wittgenstein_1929.jpg
+- 海德格尔 / Heidegger: https://upload.wikimedia.org/wikipedia/commons/1/12/Freiburg%2C_Z%C3%A4hringen-_Jahnhalle%2C_Prof._Martin_Heidegger_w%C3%A4hrend_eines_Vortrags_-_LABW_-_Staatsarchiv_Freiburg_W_134_Nr._023740f_%28cropped%29.jpeg
+- 阿伦特 / Arendt: https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Hannah_Arendt_auf_dem_1._Kulturkritikerkongress%2C_Barbara_Niggl_Radloff%2C_FM-2019-1-5-9-16_%28cropped%29.jpg/330px-Hannah_Arendt_auf_dem_1._Kulturkritikerkongress%2C_Barbara_Niggl_Radloff%2C_FM-2019-1-5-9-16_%28cropped%29.jpg
+- 萨特 / Sartre: https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Jean_Paul_Sartre_1965.jpg/330px-Jean_Paul_Sartre_1965.jpg
+- 波伏瓦 / Beauvoir: https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Simone_De_Beauvoir_%28cropped%29.jpg/330px-Simone_De_Beauvoir_%28cropped%29.jpg
+- 梅洛-庞蒂 / Merleau-Ponty: https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Maurice_Merleau-Ponty.jpg/330px-Maurice_Merleau-Ponty.jpg
+- 加缪 / Camus: https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Albert_Camus%2C_gagnant_de_prix_Nobel%2C_portrait_en_buste%2C_pos%C3%A9_au_bureau%2C_faisant_face_%C3%A0_gauche%2C_cigarette_de_tabagisme.jpg/330px-Albert_Camus%2C_gagnant_de_prix_Nobel%2C_portrait_en_buste%2C_pos%C3%A9_au_bureau%2C_faisant_face_%C3%A0_gauche%2C_cigarette_de_tabagisme.jpg
+- 蒯因 / Quine: https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Willard_Van_Orman_Quine_on_Bluenose_II_in_Halifax_NS_harbor_1980.jpg/330px-Willard_Van_Orman_Quine_on_Bluenose_II_in_Halifax_NS_harbor_1980.jpg
+- 奥斯汀 / Austin: https://upload.wikimedia.org/wikipedia/en/f/f1/J._L._Austin_%28philosopher%29_1951.jpg
+- 阿多诺 / Adorno: https://upload.wikimedia.org/wikipedia/commons/1/18/Theodor_W._Adorno.jpg
+- 罗尔斯 / Rawls: https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/John_Rawls_%281971_photo_portrait%29.jpg/330px-John_Rawls_%281971_photo_portrait%29.jpg
+- 福柯 / Foucault: https://upload.wikimedia.org/wikipedia/commons/c/ca/Photo_of_Michel_Foucault_on_1970_dustjacket_of_The_Order_of_Things.jpg
+- 德里达 / Derrida: https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Derrida_EHESS_%28cropped%29.png/330px-Derrida_EHESS_%28cropped%29.png
+- 罗蒂 / Rorty: https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Una_foto_en_la_ventana_de_Rorty_en_Barcelona.jpg/330px-Una_foto_en_la_ventana_de_Rorty_en_Barcelona.jpg
+- 德勒兹 / Deleuze: https://upload.wikimedia.org/wikipedia/en/7/7e/Gilles_Deleuze.webp
+- 克里普克 / Kripke: https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Kripke.JPG/330px-Kripke.JPG
+- 戴维森 / Davidson: https://upload.wikimedia.org/wikipedia/en/6/6a/Davidson_pyke.jpg
+- 巴特勒 / Butler: https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/JudithButler2013.jpg/330px-JudithButler2013.jpg
+- 波爱修 / Boethius: https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Boethius.jpeg/330px-Boethius.jpeg
+- 马基雅维利 / Machiavelli: https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Portrait_of_Niccol%C3%B2_Machiavelli_by_Santi_di_Tito.jpg/330px-Portrait_of_Niccol%C3%B2_Machiavelli_by_Santi_di_Tito.jpg
+- 蒙田 / Montaigne: https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Portrait_of_Michel_de_Montaigne%2C_circa_unknown.jpg/330px-Portrait_of_Michel_de_Montaigne%2C_circa_unknown.jpg
+- 孟德斯鸠 / Montesquieu: https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Charles_Montesquieu.jpg/330px-Charles_Montesquieu.jpg
+- 狄德罗 / Diderot: https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Denis_Diderot_by_Louis-Michel_van_Loo.jpg/330px-Denis_Diderot_by_Louis-Michel_van_Loo.jpg
+- 葛兰西 / Gramsci: https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Gramsci.png/330px-Gramsci.png
+- 霍克海默 / Horkheimer: https://upload.wikimedia.org/wikipedia/commons/9/94/Max_Horkheimer.jpg
+- 本雅明 / W. Benjamin: https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Walter_Benjamin_vers_1928.jpg/330px-Walter_Benjamin_vers_1928.jpg
+- 马尔库塞 / Marcuse: https://upload.wikimedia.org/wikipedia/commons/c/c7/Herbert_Marcuse_in_Newton%2C_Massachusetts_1955_%28cropped%29.jpg
+- 雅斯贝尔斯 / Jaspers: https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Karl_Jaspers_1946.jpg/330px-Karl_Jaspers_1946.jpg
+- 布伯 / Buber: https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Martin_Buber_portrait.jpg/330px-Martin_Buber_portrait.jpg
+- 拉康 / Lacan: https://upload.wikimedia.org/wikipedia/commons/2/25/Jacques_Lacan_during_an_interview_1969.jpg
+- 阿尔都塞 / Althusser: https://upload.wikimedia.org/wikipedia/en/5/51/Althusser.jpg
+- 罗兰·巴特 / Barthes: https://upload.wikimedia.org/wikipedia/en/5/59/Roland_Barthes_Vertical.jpg
+- 卡尔纳普 / Carnap: https://upload.wikimedia.org/wikipedia/en/thumb/9/98/Rudolf_Carnap_1930.jpeg/330px-Rudolf_Carnap_1930.jpeg
+- 石里克 / Schlick: https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Schlick_sitting.jpg/330px-Schlick_sitting.jpg
+- 塔尔斯基 / Tarski: https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Alfred_Tarski_1968_%28as-is%2C_cropped%29_%28cropped%29.jpg/330px-Alfred_Tarski_1968_%28as-is%2C_cropped%29_%28cropped%29.jpg
+- 普特南 / Putnam: https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Hilary_Putnam.jpg/330px-Hilary_Putnam.jpg
+- 塞尔 / Searle: https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/John_searle2.jpg/330px-John_searle2.jpg
+- 丹尼特 / Dennett: https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Daniel_Dennett_2.jpg/330px-Daniel_Dennett_2.jpg
+- 查尔默斯 / Chalmers: https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/David_chalmers.jpg/330px-David_chalmers.jpg
+- 大卫·刘易斯 / David Lewis: https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/David_Lewis_%281962%29_%28cropped%29.webp/330px-David_Lewis_%281962%29_%28cropped%29.webp.png
+- 帕菲特 / Parfit: https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Derek_Parfit_at_Harvard-April_21%2C_2015-Effective_Altruism_%28cropped%29.jpg/330px-Derek_Parfit_at_Harvard-April_21%2C_2015-Effective_Altruism_%28cropped%29.jpg
+- 辛格 / Singer: https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Peter_Singer_2017_%28cropped%29.jpg/330px-Peter_Singer_2017_%28cropped%29.jpg
+- 塞拉斯 / Sellars: https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Wilfrid_Sellars_Faculty_Photo.jpg/330px-Wilfrid_Sellars_Faculty_Photo.jpg
+- 阿那克萨戈拉 / Anaxagoras: https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Anaxagoras_Lebiedzki_Rahl.jpg/330px-Anaxagoras_Lebiedzki_Rahl.jpg
+- 恩培多克勒 / Empedocles: https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Empedokles.jpeg/330px-Empedokles.jpeg
+- 西塞罗 / Cicero: https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Bust_of_Cicero_%281st-cent._BC%29_-_Palazzo_Nuovo_-_Musei_Capitolini_-_Rome_2016.jpg/330px-Bust_of_Cicero_%281st-cent._BC%29_-_Palazzo_Nuovo_-_Musei_Capitolini_-_Rome_2016.jpg
+- 卢克莱修 / Lucretius: https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Lucretius_pointing_to_the_casus.jpg/330px-Lucretius_pointing_to_the_casus.jpg
+- 塞涅卡 / Seneca: https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Duble_herma_of_Socrates_and_Seneca_Antikensammlung_Berlin_07.jpg/330px-Duble_herma_of_Socrates_and_Seneca_Antikensammlung_Berlin_07.jpg
+- 迈蒙尼德 / Maimonides: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Portrait_of_Moses_Maimonides_in_Thesaurus_antiquitatum_sacrarum.tif/lossy-page1-330px-Portrait_of_Moses_Maimonides_in_Thesaurus_antiquitatum_sacrarum.tif.jpg
+- 邓·司各脱 / Duns Scotus: https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Scoto_%28Duns_Scoto%29.jpg/330px-Scoto_%28Duns_Scoto%29.jpg
+- 沃斯通克拉夫特 / Wollstonecraft: https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Mary_Wollstonecraft_by_John_Opie_%28c._1797%29.jpg/330px-Mary_Wollstonecraft_by_John_Opie_%28c._1797%29.jpg
+- 西蒙娜·薇依 / Simone Weil: https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Simone_Weil_1943.jpg/330px-Simone_Weil_1943.jpg
+
+## Missing
+
+- 安瑟伦 / Anselm: no image
+- 奥卡姆 / Ockham: no image
+- 笛卡尔 / Descartes: 404 
+- 库恩 / Kuhn: no image
+- 齐泽克 / Žižek: 403 
+- 克尔凯郭尔 / Kierkegaard: 403 
+- 列维-施特劳斯 / Lévi-Strauss: 403 
+- 哈贝马斯 / Habermas: 403 
+- 利科 / Ricoeur: 403 
+- 希帕提娅 / Hypatia: no image
