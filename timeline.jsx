@@ -345,7 +345,7 @@ function PhilosophyTimeline({ fixedHeight = null }) {
   const { ERAS, SCHOOLS, RELATIONS, PHILOSOPHERS } = window.PHI_DATA;
 
   const [lang, setLang] = useState(() => localStorage.getItem('phi-lang') || 'zh');
-  const [density, setDensity] = useState('curated');
+  const [density, setDensity] = useState('full');
   const [activeSchool, setActiveSchool] = useState(null);
   const [hoveredId, setHoveredId] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
