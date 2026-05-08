@@ -108,6 +108,16 @@ Portrait thumbnails are cached locally from Wikipedia/Wikimedia sources for stab
 - 西塞罗 / Cicero: https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Bust_of_Cicero_%281st-cent._BC%29_-_Palazzo_Nuovo_-_Musei_Capitolini_-_Rome_2016.jpg/330px-Bust_of_Cicero_%281st-cent._BC%29_-_Palazzo_Nuovo_-_Musei_Capitolini_-_Rome_2016.jpg
 - 卢克莱修 / Lucretius: https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Lucretius_pointing_to_the_casus.jpg/330px-Lucretius_pointing_to_the_casus.jpg
 - 塞涅卡 / Seneca: https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Duble_herma_of_Socrates_and_Seneca_Antikensammlung_Berlin_07.jpg/330px-Duble_herma_of_Socrates_and_Seneca_Antikensammlung_Berlin_07.jpg
+- 安瑟伦 / Anselm: https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Anselm_of_Canterbury%2C_seal.svg/330px-Anselm_of_Canterbury%2C_seal.svg.png
+- 奥卡姆 / Ockham: https://upload.wikimedia.org/wikipedia/commons/7/70/William_of_Ockham.png
+- 笛卡尔 / Descartes: https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg/330px-Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg
+- 库恩 / Kuhn: https://upload.wikimedia.org/wikipedia/commons/a/ad/Thomas-kuhn-portrait.png
+- 齐泽克 / Žižek: https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Slavoj_%C5%BDi%C5%BEek_2015_%28closeup%29.jpg/500px-Slavoj_%C5%BDi%C5%BEek_2015_%28closeup%29.jpg
+- 克尔凯郭尔 / Kierkegaard: https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/S%C3%B8ren_Kierkegaard_%281813-1855%29_-_%28cropped%29.jpg/500px-S%C3%B8ren_Kierkegaard_%281813-1855%29_-_%28cropped%29.jpg
+- 列维-施特劳斯 / Lévi-Strauss: https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Levi-strauss_260_%28cropped2%29.jpg/500px-Levi-strauss_260_%28cropped2%29.jpg
+- 哈贝马斯 / Habermas: https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/JuergenHabermas_crop1.jpg/500px-JuergenHabermas_crop1.jpg
+- 利科 / Ricoeur: https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Paul_Ricoeur_Balzan.png/500px-Paul_Ricoeur_Balzan.png
+- 希帕提娅 / Hypatia: https://upload.wikimedia.org/wikipedia/commons/0/07/Hypatia_portrait.png
 - 迈蒙尼德 / Maimonides: https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Portrait_of_Moses_Maimonides_in_Thesaurus_antiquitatum_sacrarum.tif/lossy-page1-330px-Portrait_of_Moses_Maimonides_in_Thesaurus_antiquitatum_sacrarum.tif.jpg
 - 邓·司各脱 / Duns Scotus: https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Scoto_%28Duns_Scoto%29.jpg/330px-Scoto_%28Duns_Scoto%29.jpg
 - 沃斯通克拉夫特 / Wollstonecraft: https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Mary_Wollstonecraft_by_John_Opie_%28c._1797%29.jpg/330px-Mary_Wollstonecraft_by_John_Opie_%28c._1797%29.jpg
@@ -115,13 +125,4 @@ Portrait thumbnails are cached locally from Wikipedia/Wikimedia sources for stab
 
 ## Missing
 
-- 安瑟伦 / Anselm: no image
-- 奥卡姆 / Ockham: no image
-- 笛卡尔 / Descartes: 404 
-- 库恩 / Kuhn: no image
-- 齐泽克 / Žižek: 403 
-- 克尔凯郭尔 / Kierkegaard: 403 
-- 列维-施特劳斯 / Lévi-Strauss: 403 
-- 哈贝马斯 / Habermas: 403 
-- 利科 / Ricoeur: 403 
-- 希帕提娅 / Hypatia: no image
+- None. All 120 philosopher entries currently have local portrait files.
